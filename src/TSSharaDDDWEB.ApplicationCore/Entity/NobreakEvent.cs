@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using TSSharaDDDWEB.ApplicationCore.Enuns;
 
 namespace TSSharaDDDWEB.ApplicationCore.Entity
 {
@@ -8,7 +9,7 @@ namespace TSSharaDDDWEB.ApplicationCore.Entity
         public int ID { get; set; }
         [Required]
         [Display(Name = "Evento")]
-        public double EventReasons { get; set; }
+        public EventReasons EventReasons { get; set; }
         [Display(Name = "Tensão de Entrada")]
         public double InputVoltage { get; set; }
         [Display(Name = "Tensão de Saída")]

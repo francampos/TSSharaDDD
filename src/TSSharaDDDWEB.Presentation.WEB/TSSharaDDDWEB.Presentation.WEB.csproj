@@ -5,6 +5,36 @@
     <UserSecretsId>aspnet-TSSharaDDDWEB.Presentation.WEB-58D149A9-8398-4206-AE13-DE371D5CDDA7</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Views\Graficos\**" />
+    <Compile Remove="Views\Medidores\**" />
+    <Compile Remove="Views\Report\**" />
+    <Content Remove="Views\Graficos\**" />
+    <Content Remove="Views\Medidores\**" />
+    <Content Remove="Views\Report\**" />
+    <EmbeddedResource Remove="Views\Graficos\**" />
+    <EmbeddedResource Remove="Views\Medidores\**" />
+    <EmbeddedResource Remove="Views\Report\**" />
+    <None Remove="Views\Graficos\**" />
+    <None Remove="Views\Medidores\**" />
+    <None Remove="Views\Report\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\BaseModel.cs" />
+    <Compile Remove="ViewModels\HomeViewModel.cs" />
+    <Compile Remove="ViewModels\MonitoringViewModel.cs" />
+    <Compile Remove="ViewModels\ReportViewModel.cs" />
+    <Compile Remove="ViewModels\TestViewModel.cs" />
+    <Compile Remove="Views\Monitoring\MonitoringView.xaml.cs" />
+    <Compile Remove="Views\Shared\HomeView.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Monitoring\MonitoringView.xaml" />
+    <None Remove="Views\Shared\HomeView.xaml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
@@ -21,6 +51,10 @@
   <ItemGroup>
     <ProjectReference Include="..\TSSharaDDDWEB.ApplicationCore\TSSharaDDDWEB.ApplicationCore.csproj" />
     <ProjectReference Include="..\TSSharaDDDWEB.Infraestructure\TSSharaDDDWEB.Infraestructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Monitoring\" />
   </ItemGroup>
 
 </Project>

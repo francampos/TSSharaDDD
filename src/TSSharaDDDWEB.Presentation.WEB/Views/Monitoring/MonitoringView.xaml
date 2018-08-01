@@ -1,0 +1,196 @@
+﻿<UserControl x:Class="TSSharaDDDWEB.Presentation.WEB.Views.Monitoring.MonitoringView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:NobreakTSShara.UI.Infrastructure.ValidationView"
+             mc:Ignorable="d"
+             d:DesignHeight="300" Width="435">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,2,40,2" />
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="true">
+                            <Border Background="Gold" DockPanel.Dock="right" Margin="5,0,0,0" 
+                                Width="20" Height="20" CornerRadius="5"
+                                ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                                <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="Black" />
+                            </Border>
+                            <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                                <Border BorderBrush="Gold" BorderThickness="1" />
+                            </AdornedElementPlaceholder>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="BaseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="#ffffff"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="16,3,16,3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter" Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#dddddd" />
+                                <Setter Property="BorderBrush" Value="#cccccc" />
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#1ba1e2" />
+                                <Setter Property="BorderBrush" Value="#1ba1e2"/>
+                                <Setter Property="Foreground" Value="#ffffff"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="#1ba1e2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="-65,-45,-230,-70" Name="grid">
+        <Label x:Name="labelEmail" Content="{DynamicResource ResourceKey=LabelTextFieldEmail}" HorizontalAlignment="Left" Margin="-120,165,0,0" VerticalAlignment="Top" Width="138" Height="28"/>
+        <Label x:Name="labelSerial" Content="{DynamicResource ResourceKey=LabelTextFieldSerail}" HorizontalAlignment="Left" Margin="-120,214,0,0" VerticalAlignment="Top" Width="138" Height="29"/>
+        <Label x:Name="labelPassword" Content="{DynamicResource ResourceKey=LabelTextFieldPassword}" HorizontalAlignment="Left" Margin="330,165,0,0" VerticalAlignment="Top" Width="141" Height="28"/>
+        <Label x:Name="labelNobreakNickname" Content="{DynamicResource ResourceKey=LabelTextFieldNickaname}" HorizontalAlignment="Left" Margin="330,214,0,0" VerticalAlignment="Top" Width="141" Height="29"/>
+        <GroupBox x:Name="groupBox1" Header="{DynamicResource ResourceKey=LabelGroupboxRemoteMonitoring}" HorizontalAlignment="Left" Height="266" Margin="-154,55,0,0" VerticalAlignment="Top" Width="850">
+            <CheckBox Content="{DynamicResource ResourceKey=LabelCheckBoxActiveRemoteMonitoring}" Checked="Checkbox_checked" Unchecked="Checkbox_unchecked" HorizontalAlignment="Left" Height="27" Margin="28,14,0,0" VerticalAlignment="Top" Width="412"/>
+        </GroupBox>
+        <GroupBox x:Name="groupBox" Header="{DynamicResource ResourceKey=LabelGroupboxLocalMonitoring}" HorizontalAlignment="Left" Height="112" Margin="-154,340,0,-37" VerticalAlignment="Top" Width="857"/>
+        <TextBox Name="textBoxEmail"
+                  MaxLength="30"
+                 HorizontalAlignment="Left" 
+                 Height="25" 
+                 Margin="10,168,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top"
+                 Width="240">
+            <TextBox.Text>
+                <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:EmailValidationRule x:Name="EmailValidation" ValidatesOnTargetUpdated="True"></local:EmailValidationRule>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <PasswordBox Name="textBoxPassword"
+                 HorizontalAlignment="Left" 
+                 Height="25" 
+                 Margin="417,168,0,0" 
+                 VerticalAlignment="Top" 
+                 Width="241">
+        </PasswordBox>
+        <TextBox Name="textBoxSerial"
+                  MaxLength="11"
+                 HorizontalAlignment="Left" 
+                 Height="26" 
+                 Margin="10,217,0,0" 
+                 VerticalAlignment="Top" 
+                 Width="240" 
+                 RenderTransformOrigin="0.5,3.696">
+            <TextBox.Text>
+                <Binding Path="Serial" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:SerialValidationRule x:Name="SerialValidation" ValidatesOnTargetUpdated="True"></local:SerialValidationRule>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="textBoxNobreakNickname"
+                MaxLength="15"
+                 HorizontalAlignment="Left" 
+                 Height="25" 
+                 Margin="417,221,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="241">
+            <TextBox.Text>
+                <Binding Path="Nickname" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:NicknameValidationRule x:Name="NobreakNicknameValidation" ValidatesOnTargetUpdated="True"></local:NicknameValidationRule>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Button Content="{DynamicResource ValueButtonStartMonitoring}" x:Name="RemoteButtonMonitoring"  Click="SaveChanges" HorizontalAlignment="Left" Height="40" Margin="500,262,0,0" VerticalAlignment="Top" Width="160">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="False" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ElementName=textBoxEmail, Path=(Validation.HasError)}" Value="false"/>
+                                <Condition Binding="{Binding ElementName=textBoxPassword, Path=(Validation.HasError)}" Value="false"/>
+                                <Condition Binding="{Binding ElementName=textBoxSerial, Path=(Validation.HasError)}" Value="false"/>
+                                <Condition Binding="{Binding ElementName=textBoxNobreakNickname, Path=(Validation.HasError)}" Value="false"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Label x:Name="label" Content="{DynamicResource ResourceKey=LabelTextFieldIpAdress}" HorizontalAlignment="Left" Margin="-120,400,0,-14" VerticalAlignment="Top" Width="100" Height="29"/>
+        <TextBox Name="textBoxNobreakIPAddress"
+                 MaxLength="16"
+                 HorizontalAlignment="Left" 
+                 Height="25" 
+                 Margin="18,400,0,-10" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top"
+                 Width="240">
+            <TextBox.Text>
+                <Binding Path="IPAddress" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:IPAddressValidationRule x:Name="IPAddressValidation" ValidatesOnTargetUpdated="True"></local:IPAddressValidationRule>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Button Content="{DynamicResource ValueButtonStartMonitoring}" x:Name="LocalButtonMonitoring" HorizontalAlignment="Left" Height="40" Margin="498,392,0,-17" VerticalAlignment="Top" Width="160">
+            <Button.Style x:Uid="Base">
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="False" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ElementName=textBoxNobreakIPAddress, Path=(Validation.HasError)}" Value="false"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</UserControl>

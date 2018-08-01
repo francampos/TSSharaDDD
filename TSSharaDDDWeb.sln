@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Infraestructure", "3-Infr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSSharaDDDWEB.ApplicationCore", "src\TSSharaDDDWEB.ApplicationCore\TSSharaDDDWEB.ApplicationCore.csproj", "{B14EFB04-0269-4EA0-8CB3-7B1EF4B45AA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSSharaDDDWEB.Infraestructure", "src\TSSharaDDDWEB.Infraestructure\TSSharaDDDWEB.Infraestructure.csproj", "{E762553A-56B8-4669-A3BB-3A70B008FA16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TSSharaDDDWEB.Infraestructure", "src\TSSharaDDDWEB.Infraestructure\TSSharaDDDWEB.Infraestructure.csproj", "{E762553A-56B8-4669-A3BB-3A70B008FA16}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSSharaDDDWEB.Presentation.WEB", "src\TSSharaDDDWEB.Presentation.WEB\TSSharaDDDWEB.Presentation.WEB.csproj", "{0201746E-C77D-428F-BC97-4F412B84BBFC}"
 EndProject

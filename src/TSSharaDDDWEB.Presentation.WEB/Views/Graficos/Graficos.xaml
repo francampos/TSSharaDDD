@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="TSSharaDDDWEB.Presentation.WEB.Views.CartesianChart.ConstantChanges.Graficos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:constantChanges="clr-namespace:NobreakTSShara.UI.Views.CartesianChart.ConstantChanges"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" 
+             d:DataContext="{d:DesignInstance constantChanges:Graficos}">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="bvc"></BooleanToVisibilityConverter>
+        <Style x:Key="BaseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="#ffffff"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="16,3,16,3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter" Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#dddddd" />
+                                <Setter Property="BorderBrush" Value="#cccccc" />
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#1ba1e2" />
+                                <Setter Property="BorderBrush" Value="#1ba1e2"/>
+                                <Setter Property="Foreground" Value="#ffffff"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="#1ba1e2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Click="InjectStopOnClick" Style="{StaticResource BaseButtonStyle}" Content="{DynamicResource ValueButtonStartStopMonitoring}"></Button>
+        <!--Here we disable tooltips and hovering to get a better performance-->
+        <lvc:CartesianChart Grid.Row="1" AnimationsSpeed="0:0:0.5" Hoverable="False" DataTooltip="{x:Null}" LegendLocation="Top" >
+            <lvc:CartesianChart.Series>
+                <lvc:LineSeries Values="{Binding TensaoEntrada}"                                 
+                                PointGeometry="{x:Null}" 
+                                LineSmoothness="1"
+                                StrokeThickness="6" 
+                                Stroke="Green"
+                                Fill="Transparent"
+                                Name="EntradaSeries"
+                                Visibility="{Binding TensaoEntradaVisibility, Converter={StaticResource bvc}}"
+                                Title="{DynamicResource LabelChartInputVoltage}"/>
+
+                <lvc:LineSeries Values="{Binding TensaoSaida}"                                 
+                                PointGeometry="{x:Null}" 
+                                LineSmoothness="1"
+                                StrokeThickness="6" 
+                                Stroke="#F34336"
+                                Fill="Transparent"
+                                Visibility="{Binding TensaoSaidaVisibility, Converter={StaticResource bvc}}"
+                                Title="{DynamicResource LabelChartOutputVoltage}"/>
+
+                <lvc:LineSeries Values="{Binding Frequencia}"                                 
+                                PointGeometry="{x:Null}" 
+                                LineSmoothness="1"
+                                StrokeThickness="6" 
+                                Stroke="#000"
+                                Fill="Transparent"
+                                Visibility="{Binding FrequenciaVisibility, Converter={StaticResource bvc}}"
+                                Title="{DynamicResource LabelChartFrequency}"/>
+            </lvc:CartesianChart.Series>
+
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis LabelFormatter="{Binding DateTimeFormatter}" 
+                          MaxValue="{Binding AxisMax}" 
+                          MinValue="{Binding AxisMin}"
+                          Unit="{Binding AxisUnit}">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Step="{Binding AxisStep}" />
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis 
+                          MaxValue="140" 
+                          MinValue="0">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Step="5" />
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
+    </Grid>
+
+</UserControl>
