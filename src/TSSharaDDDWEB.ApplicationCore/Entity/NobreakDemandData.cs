@@ -12,7 +12,7 @@ namespace TSSharaDDDWEB.ApplicationCore.Entity
         }
 
         public int Id { get; set; }
-        public TechnicalData NobreakTechnicalData { get; set; } //TODO: Este dado nao faz sentido aqui
+        public TechnicalData NobreakTechnicalData { get; set; 
         public EventReasons EventReasons { get; set; }
         public double InputVoltage { get; set; }
         public double OutputVoltage { get; set; }

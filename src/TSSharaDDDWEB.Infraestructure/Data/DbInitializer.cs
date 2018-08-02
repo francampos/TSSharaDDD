@@ -19,7 +19,7 @@ namespace TSSharaDDDWEB.Infraestructure.Data
             var nobreaks = new Nobreak[]
             {
                 new Nobreak {
-                    //Dados de entrada do Nobreak, repetir...
+                    //Dados de entrada para o App Nobreak, repetir...
                 }
             };
         }

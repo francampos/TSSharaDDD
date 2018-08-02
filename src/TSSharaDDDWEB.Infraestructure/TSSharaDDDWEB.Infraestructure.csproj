@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="EntityConfig\" />
+    <Compile Remove="Repository\INobreakDemandDataRepository.cs" />
+    <Compile Remove="Repository\NobreakDemandDataRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>
