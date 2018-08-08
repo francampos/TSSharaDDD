@@ -55,6 +55,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Monitoring\" />
+    <Folder Include="Views\NobreakEvents\" />
   </ItemGroup>
 
 </Project>

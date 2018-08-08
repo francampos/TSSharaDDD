@@ -32,8 +32,6 @@ namespace TSSharaDDDWEB.ApplicationCore.Enuns
         HibernacaoSistema,
         DesligamentoSistema,
         RetornoSistema
-
-
     }
 }
 
