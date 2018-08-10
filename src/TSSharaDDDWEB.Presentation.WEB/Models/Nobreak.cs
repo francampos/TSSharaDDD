@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -25,13 +26,17 @@ namespace TSSharaDDDWEB.Presentation.WEB.Models
 
         [JsonIgnore]
         public virtual ICollection<ApplicationUser> Users { get; set; }
+
         [JsonIgnore] 
-        //[IgnoreDataMember]
         public virtual ICollection<NobreakEvent> NobreakEvents { get; set; }
 
         public override string ToString()
         {
             return Serial;
+        }
+
+        private class IndexAttribute : Attribute
+        {
         }
     }
 }

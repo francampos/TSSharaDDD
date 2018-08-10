@@ -8,7 +8,6 @@ namespace TSSharaDDDWEB.ApplicationCore.Entity
     {
         public Nobreak()
         {
-            //Verificar melhor metodo para nao receber ponteiro nulo ao chamar NobreakEvents.Add
             NobreakEvents = new List<NobreakEvent>();
             Nobreaks = new List<Nobreak>();
         }
